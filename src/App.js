@@ -1,25 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from './logo.svg'
+import React, { Component } from 'react'
+import './App.css'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import PropTypes from 'prop-types'
+
+import Navigation from './components/Navigation'
+import Header from './components/Header'
+import Treatment from './components/Treatment'
+import Team from './components/Team'
+import Office from './components/Office'
+import Contact from './components/Contact'
+
+import resumeDataFr from './data/resumeDataFr'
+
+class App extends Component {
+  state = {
+    resumeDataFr: null
+  }
+
+  componentDidMount () {
+    this.handleLoadResumeData()
+  }
+
+  handleLoadResumeData () {
+    this.setState({ resumeDataFr: resumeDataFr })
+  }
+
+  render () {
+    if(this.state.resumeDataFr === null)
+       return "Chargement..."
+
+    return (
+      <div>
+        <Navigation data={this.state.resumeDataFr.navigation} />
+        <Header data={this.state.resumeDataFr.header} />
+        <Treatment data={this.state.resumeDataFr.treatment} />
+        <Team data={this.state.resumeDataFr.team} />
+        <Office data={this.state.resumeDataFr.office} />
+        <Contact data={this.state.resumeDataFr.contact} />
+      </div>
+    )
+  }
 }
 
-export default App;
+App.propTypes = {
+  data: PropTypes.object.isRequired
+}
+
+export default App
