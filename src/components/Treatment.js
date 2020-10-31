@@ -1,4 +1,6 @@
 import React from 'react'
+import { faHome } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Treatment = ({ data }) => {
   return (
@@ -11,7 +13,8 @@ const Treatment = ({ data }) => {
           {data.treatments ? Object.keys(data.treatments).map(key => (
             <div key={key} className='col-xs-6 col-md-3'>
               {' '}
-              <i className={data.treatments[key].icon} />
+              {/* <FontAwesomeIcon icon={data.treatments[key].icon} /> */}
+              <FontAwesomeIcon icon={faHome} />
               <h3>{data.treatments[key].title}</h3>
               <p>{data.treatments[key].text}</p>
             </div>

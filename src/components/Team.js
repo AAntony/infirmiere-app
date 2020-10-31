@@ -1,6 +1,15 @@
 import React from 'react'
 
 const Team = ({ data }) => {
+  const requireImage = chemin => {
+    console.log(chemin)
+    try {
+      return require(`../img/${chemin}`)
+    } catch (err) {
+      return require(`../img/nurse_default.png`)
+    }
+  }
+
   return (
     <div id='equipe' className='text-center'>
       <div className='container'>
@@ -14,7 +23,7 @@ const Team = ({ data }) => {
               <div key={key} className='col-md-3 col-sm-6 team'>
                 <div className='thumbnail'>
                   {' '}
-                  <img src={data.nurses[key].image} alt='...' className='team-img' />
+                  <img src={requireImage(data.nurses[key].image.src)} alt={data.nurses[key].image.alt} className='team-img' />
                   <div className='caption'>
                     <h4>{data.nurses[key].firstname} {data.nurses[key].name}</h4>
                     <p>{data.nurses[key].experience}</p>
